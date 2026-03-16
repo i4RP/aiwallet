@@ -62,7 +62,7 @@ jobs:
           options:
             bundleIdPrefix: com.pocket
             deploymentTarget:
-              iOS: "16.0"
+              iOS: "17.0"
           targets:
             PocketApp:
               type: application

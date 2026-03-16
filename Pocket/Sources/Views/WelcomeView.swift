@@ -2,6 +2,7 @@ import SwiftUI
 
 struct WelcomeView: View {
     @StateObject private var viewModel = WelcomeViewModel()
+    @ObservedObject var authViewModel: AuthViewModel
     @State private var showContent = false
     
     var body: some View {
@@ -35,8 +36,8 @@ struct WelcomeView: View {
                 VStack(spacing: 16) {
                     // Get Started Button
                     Button(action: {
-                        // Handle get started action
-                    }) {
+                        authViewModel.showLogin()
+                    }, label: {
                         Text("Get started")
                             .font(.system(size: 18, weight: .semibold))
                             .foregroundColor(.black)
@@ -46,7 +47,7 @@ struct WelcomeView: View {
                                 Capsule()
                                     .fill(Color.pocketCyan)
                             )
-                    }
+                    })
                     .padding(.horizontal, 40)
                     .opacity(showContent ? 1 : 0)
                     .offset(y: showContent ? 0 : 20)
@@ -60,12 +61,12 @@ struct WelcomeView: View {
                         
                         Button(action: {
                             // Handle terms action
-                        }) {
+                        }, label: {
                             Text("Terms & Conditions")
                                 .font(.system(size: 12, weight: .medium))
                                 .foregroundColor(.pocketCyan)
                                 .underline()
-                        }
+                        })
                     }
                     .opacity(showContent ? 1 : 0)
                     .animation(.easeOut(duration: 0.6).delay(0.8), value: showContent)
@@ -76,9 +77,16 @@ struct WelcomeView: View {
         .onAppear {
             showContent = true
         }
+        .overlay {
+            if authViewModel.showLoginSheet {
+                LoginSheetView(authViewModel: authViewModel)
+                    .transition(.move(edge: .bottom).combined(with: .opacity))
+                    .animation(.spring(response: 0.4, dampingFraction: 0.85), value: authViewModel.showLoginSheet)
+            }
+        }
     }
 }
 
 #Preview {
-    WelcomeView()
+    WelcomeView(authViewModel: AuthViewModel())
 }

@@ -4,7 +4,7 @@ import PackageDescription
 let package = Package(
     name: "Pocket",
     platforms: [
-        .iOS(.v16)
+        .iOS(.v17)
     ],
     products: [
         .library(
@@ -12,9 +12,15 @@ let package = Package(
             targets: ["Pocket"]
         ),
     ],
+    dependencies: [
+        .package(url: "https://github.com/privy-io/privy-ios", from: "1.0.0"),
+    ],
     targets: [
         .target(
             name: "Pocket",
+            dependencies: [
+                .product(name: "PrivySDK", package: "privy-ios"),
+            ],
             path: "Pocket/Sources"
         ),
     ]

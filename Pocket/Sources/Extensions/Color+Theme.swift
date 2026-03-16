@@ -20,4 +20,11 @@ extension Color {
     static let pocketPrimaryText = Color.white
     static let pocketSecondaryText = Color(red: 0.55, green: 0.55, blue: 0.60)
     static let pocketTertiaryText = Color(red: 0.40, green: 0.40, blue: 0.45)
+
+    // MARK: - Login Sheet Colors
+    static let loginSheetBackground = Color(red: 0.10, green: 0.10, blue: 0.12)
+    static let loginButtonBackground = Color(red: 0.18, green: 0.18, blue: 0.20)
+    static let loginButtonBorder = Color(red: 0.25, green: 0.25, blue: 0.28)
+    static let loginButtonHighlight = Color(red: 0.20, green: 0.20, blue: 0.23)
+    static let loginIconBackground = Color(red: 0.22, green: 0.22, blue: 0.25)
 }
