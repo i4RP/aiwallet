@@ -157,4 +157,23 @@ class AuthViewModel: ObservableObject {
             self?.isLoading = false
         }
     }
+
+    // MARK: - Mock Login (for development)
+    func mockLogin() {
+        isLoading = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) { [weak self] in
+            guard let self = self else { return }
+            self.isLoading = false
+            self.showLoginSheet = false
+            self.authState = .authenticated
+        }
+    }
+
+    func logout() {
+        // TODO: Integrate with Privy SDK
+        // try await privy.logout()
+        authState = .unauthenticated
+        emailInput = ""
+        errorMessage = nil
+    }
 }

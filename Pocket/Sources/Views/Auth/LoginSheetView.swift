@@ -91,7 +91,7 @@ struct MainLoginContent: View {
                     title: "MetaMask",
                     showLastUsed: true,
                     showChainIcon: true,
-                    action: { authViewModel.loginWithMetaMask() }
+                    action: { authViewModel.mockLogin() }
                 )
 
                 // Email Input
@@ -103,7 +103,7 @@ struct MainLoginContent: View {
                     systemIcon: "g.circle.fill",
                     title: "Google",
                     isHighlighted: true,
-                    action: { authViewModel.loginWithGoogle() }
+                    action: { authViewModel.mockLogin() }
                 )
 
                 // Other socials
@@ -147,7 +147,7 @@ struct EmailInputRow: View {
                 .textContentType(.emailAddress)
                 .autocapitalization(.none)
                 .disableAutocorrection(true)
-                .onChange(of: authViewModel.emailInput) { _ in
+                .onChange(of: authViewModel.emailInput) {
                     authViewModel.validateEmail()
                 }
 
